@@ -53,13 +53,23 @@
 
       <div class="col-sm-12 container pt-5 justify-content-center">
         <h1 class="mb-3">Crie seu Cadastro</h1>
-        <form class="needs-validation" novalidate>
+        <form name="registration" action="" method="post">
           <div class="row g-3">
             <div class="col-12">
               <label for="name" class="form-label">Nome Completo</label>
               <input type="text" class="form-control" id="firstName" placeholder="João da Silva" value="" required>
               <div class="invalid-feedback">
                 Nome inteiro.
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="username" class="form-label">Username</label>
+              <div class="input-group has-validation">
+                <input type="text" class="form-control" name="username" id="username" placeholder="" required>
+                <div class="invalid-feedback">
+                  
+                </div>
               </div>
             </div>
 
@@ -75,7 +85,7 @@
 
             <div class="col-12">
               <label for="email" class="form-label">Email </label>
-              <input type="email" class="form-control" id="email" placeholder="you@example.com">
+              <input type="email" class="form-control" id="email" name="email "placeholder="you@example.com">
               <div class="invalid-feedback">
                 Adicione um e-mail válido.
               </div>
@@ -90,7 +100,7 @@
             </div>
             <div class="col-12">
               <label for="text" class="form-label">Crie uma senha</label>
-              <input type="password" class="form-control" id="senha" placeholder="********" required>
+              <input type="password" class="form-control" id="senha" name="password" placeholder="********" required>
               <div class="invalid-feedback">
                 Por favor, crie sua senha.
               </div>
@@ -103,7 +113,7 @@
               </div>
             </div>
             <div class="col-4">
-              <button type="submit" class="btn btn-danger">Criar meu Cadastro</button>
+              <button type="submit" class="btn btn-danger"name="submit" value="Register" >Criar meu Cadastro</button>
             </div>
           </div>
 
@@ -115,4 +125,28 @@
   </footer>
 </body>
 
+<?php
+require('login/db.php');
+// If form submitted, insert values into the database.
+if (isset($_REQUEST['username'])){
+        // removes backslashes
+	$username = stripslashes($_REQUEST['username']);
+        //escapes special characters in a string
+	$username = mysqli_real_escape_string($con,$username); 
+	$email = stripslashes($_REQUEST['email']);
+	$email = mysqli_real_escape_string($con,$email);
+	$password = stripslashes($_REQUEST['password']);
+	$password = mysqli_real_escape_string($con,$password);
+	$trn_date = date("Y-m-d H:i:s");
+        $query = "INSERT into `users` (username, password, email, trn_date)
+VALUES ('$username', '".md5($password)."', '$email', '$trn_date')";
+        $result = mysqli_query($con,$query);
+        if($result){
+            echo "<div class='form'>
+<h3>You are registered successfully.</h3>
+<br/>Click here to <a href='login/login.php'>Login</a></div>";
+        }
+    }else{
+?>
+<?php } ?>
 </html>
