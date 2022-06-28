@@ -16,7 +16,7 @@
   <header class="container-fluid p-3 bg-black text-danger">
     <div class="header conatiner">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-       
+
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="home.php" class=" col-sm nav-link px-2 text-danger ">Home</a></li>
           <li><a href="streaming.php" class="col-sm nav-link px-2 text-danger ">Streaming</a></li>
@@ -57,18 +57,18 @@
   <div class="cart-modal-overlay">
     <div class="cart-modal">
       <i id="close-btn" class="fas fa-times"></i>
-        <h1 class="cart-is-empty">Cart is empty</h1>
-      
-        <div class="product-rows">
-        </div>
-        <div class="total">
-          <h1 class="cart-total">TOTAL</h1>
-            <span class="total-price">R$ 00,00</span>
-              <button class="purchase-btn">Finalizar Compra</button>
-        </div>
+      <h1 class="cart-is-empty">Cart is empty</h1>
+
+      <div class="product-rows">
+      </div>
+      <div class="total">
+        <h1 class="cart-total">TOTAL</h1>
+        <span class="total-price">R$ 00,00</span>
+        <button class="purchase-btn">Finalizar Compra</button>
       </div>
     </div>
-<!--   end of cart modal -->
+  </div>
+  <!--   end of cart modal -->
 
   <!--  products  -->
   <div class="items-container">
@@ -100,9 +100,10 @@
 
 </body>
 <?php
-session_start();
-if(!isset($_SESSION["username"])){
-header("Location: home.php");
-exit(); }
+// session_start();
+// if(!isset($_SESSION["username"])){
+// header("Location: home.php");
+// exit(); }
 ?>
+
 </html>
